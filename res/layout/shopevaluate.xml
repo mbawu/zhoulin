@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="@drawable/top_bar" >
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"
+            android:gravity="center_vertical" >
+
+            <Button
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/back"
+                android:gravity="center"
+                android:textColor="@android:color/white" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="商品评价"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ly"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:background="@android:color/white"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/tv_changer"
+            android:gravity="center"
+            android:text="好评"
+            android:textColor="#62D036"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/tv_changerno"
+            android:gravity="center"
+            android:text="中评"
+            android:textColor="#333333"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@drawable/tv_changerno"
+            android:gravity="center"
+            android:text="差评"
+            android:textColor="#333333"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <ViewFlipper
+        android:id="@+id/vf"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="18.5" >
+
+        <ListView
+            android:id="@+id/lv1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#ededed"
+            android:cacheColorHint="#00000000"
+            android:divider="#00000000" >
+        </ListView>
+
+        <ListView
+            android:id="@+id/lv2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#ededed"
+            android:cacheColorHint="#00000000"
+            android:divider="#00000000" >
+        </ListView>
+
+        <ListView
+            android:id="@+id/lv3"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#ededed"
+            android:cacheColorHint="#00000000"
+            android:divider="#00000000" >
+        </ListView>
+    </ViewFlipper>
+
+</LinearLayout>

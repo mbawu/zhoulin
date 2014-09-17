@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="80dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+         android:textSize="15sp"
+        android:background="@drawable/popup_top" />
+
+    <LinearLayout
+        android:id="@+id/populy"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ededed"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/moren"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/popu_iteman"
+            android:gravity="center"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+             android:textSize="15sp"
+            android:text="默认"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/priceup"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/popu_item"
+            android:gravity="center"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+             android:textSize="15sp"
+            android:text="价格升序"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/pricedown"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/popu_item"
+            android:gravity="center"
+             android:textSize="15sp"
+            android:paddingBottom="3dp"
+            android:paddingTop="3dp"
+            android:text="价格降序"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/personhot"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/popu_item"
+            android:gravity="center"
+            android:paddingBottom="3dp"
+             android:textSize="15sp"
+            android:paddingTop="3dp"
+            android:text="人气热度"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/newshop"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/popu_item"
+            android:gravity="center"
+            android:paddingBottom="3dp"
+             android:textSize="15sp"
+            android:paddingTop="3dp"
+            android:text="新品到货"
+            android:textColor="#333333" />
+    </LinearLayout>
+
+</LinearLayout>

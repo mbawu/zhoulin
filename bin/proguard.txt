@@ -1,0 +1,185 @@
+# view AndroidManifest.xml #generated:132
+# view AndroidManifest.xml #generated:91
+-keep class cn.jpush.android.service.AlarmReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:126
+-keep class cn.jpush.android.service.DownloadService { <init>(...); }
+
+# view AndroidManifest.xml #generated:70
+-keep class cn.jpush.android.service.PushReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:58
+-keep class cn.jpush.android.service.PushService { <init>(...); }
+
+# view AndroidManifest.xml #generated:114
+-keep class cn.jpush.android.ui.PushActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:336
+-keep class com.alipay.android.app.sdk.WapPayActivity { <init>(...); }
+
+# view res/layout/commitorder.xml #generated:233
+# view res/layout/commodity.xml #generated:607
+# view res/layout/dialog_item.xml #generated:7
+# view res/layout/grid_image.xml #generated:8
+# view res/layout/grid_image2.xml #generated:9
+# view res/layout/grid_image3.xml #generated:9
+# view res/layout/grid_image4.xml #generated:9
+# view res/layout/machinelv_item.xml #generated:16
+# view res/layout/netim.xml #generated:2
+# view res/layout/order1_item.xml #generated:66
+# view res/layout/orderdetails_it.xml #generated:14
+# view res/layout/orderdetails_item.xml #generated:12
+# view res/layout/orderevaluate_item.xml #generated:14
+# view res/layout/sale_li.xml #generated:9
+# view res/layout/sale_lii.xml #generated:8
+# view res/layout/searchlist_item.xml #generated:21
+# view res/layout/shop_item.xml #generated:24
+# view res/layout/shopfilterfragment_item.xml #generated:22
+# view res/layout/shoplistfragmentlv2_item.xml #generated:10
+# view res/layout/shopphoto.xml #generated:8
+-keep class com.android.volley.toolbox.NetworkImageView { <init>(...); }
+
+# view AndroidManifest.xml #generated:176
+-keep class com.unionpay.uppay.PayActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:235
+-keep class xinyuan.cn.zhoulin.Areaselectqidong { <init>(...); }
+
+# view AndroidManifest.xml #generated:227
+-keep class xinyuan.cn.zhoulin.CommitOrderActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:292
+-keep class xinyuan.cn.zhoulin.Commm { <init>(...); }
+
+# view AndroidManifest.xml #generated:287
+-keep class xinyuan.cn.zhoulin.Commodity { <init>(...); }
+
+# view AndroidManifest.xml #generated:183
+-keep class xinyuan.cn.zhoulin.ContentActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:93
+-keep class xinyuan.cn.zhoulin.JPushReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:259
+-keep class xinyuan.cn.zhoulin.LoginActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:231
+-keep class xinyuan.cn.zhoulin.MachineActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:263
+-keep class xinyuan.cn.zhoulin.MachineCommitOrderActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:245
+-keep class xinyuan.cn.zhoulin.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:52
+-keep class xinyuan.cn.zhoulin.Myapplication { <init>(...); }
+
+# view AndroidManifest.xml #generated:255
+-keep class xinyuan.cn.zhoulin.RegistActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:223
+-keep class xinyuan.cn.zhoulin.ShopEvaluate { <init>(...); }
+
+# view AndroidManifest.xml #generated:146
+-keep class xinyuan.cn.zhoulin.SongcuomenActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:288
+-keep class xinyuan.cn.zhoulin.Zxingshow { <init>(...); }
+
+# view AndroidManifest.xml #generated:300
+-keep class xinyuan.cn.zhoulin.activity2.machine.VisitorPayActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:249
+-keep class xinyuan.cn.zhoulin.activitys2.muchmore.AddressSelect { <init>(...); }
+
+# view AndroidManifest.xml #generated:283
+-keep class xinyuan.cn.zhoulin.activitys2.muchmore.ContactActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:267
+-keep class xinyuan.cn.zhoulin.activitys2.muchmore.HelpActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:308
+-keep class xinyuan.cn.zhoulin.activitys2.muchmore.SuggesActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:312
+-keep class xinyuan.cn.zhoulin.activitys2.order.OrderActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:304
+-keep class xinyuan.cn.zhoulin.activitys2.search.SearChResoutListActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:328
+-keep class xinyuan.cn.zhoulin.activitys2.shop.ShoptwoActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:219
+-keep class xinyuan.cn.zhoulin.address.AddressChangerActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:199
+-keep class xinyuan.cn.zhoulin.address.BuildAddress { <init>(...); }
+
+# view AndroidManifest.xml #generated:203
+-keep class xinyuan.cn.zhoulin.address.BuildAddress1 { <init>(...); }
+
+# view AndroidManifest.xml #generated:207
+-keep class xinyuan.cn.zhoulin.address.BuildAddress2 { <init>(...); }
+
+# view AndroidManifest.xml #generated:211
+-keep class xinyuan.cn.zhoulin.address.BuildAddress3 { <init>(...); }
+
+# view AndroidManifest.xml #generated:215
+-keep class xinyuan.cn.zhoulin.address.ManageAddress { <init>(...); }
+
+# view AndroidManifest.xml #generated:324
+-keep class xinyuan.cn.zhoulin.alipay.AlixDemo { <init>(...); }
+
+# view AndroidManifest.xml #generated:296
+-keep class xinyuan.cn.zhoulin.alipay.PayActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:279
+-keep class xinyuan.cn.zhoulin.com.alipay.android.appDemo4.AlixDemo { <init>(...); }
+
+# view AndroidManifest.xml #generated:191
+-keep class xinyuan.cn.zhoulin.loginchanger.CenterLoginActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:195
+-keep class xinyuan.cn.zhoulin.loginchanger.ExitLoginActivity { <init>(...); }
+
+# view res/layout/commodity.xml #generated:63
+-keep class xinyuan.cn.zhoulin.model.MySrclView { <init>(...); }
+
+# view res/layout/salefragment.xml #generated:110
+# view res/layout/salefragment.xml #generated:121
+# view res/layout/salefragment.xml #generated:132
+# view res/layout/salefragment.xml #generated:143
+-keep class xinyuan.cn.zhoulin.model.Mygd { <init>(...); }
+
+# view res/layout/commodity.xml #generated:79
+-keep class xinyuan.cn.zhoulin.model.Myvf { <init>(...); }
+
+# view AndroidManifest.xml #generated:187
+-keep class xinyuan.cn.zhoulin.pay.AlixDemo { <init>(...); }
+
+# view AndroidManifest.xml #generated:252
+-keep class xinyuan.cn.zhoulin.pay.PayMethod { <init>(...); }
+
+# view AndroidManifest.xml #generated:271
+-keep class xinyuan.cn.zhoulin.views.order.OrderDetails { <init>(...); }
+
+# view AndroidManifest.xml #generated:316
+-keep class xinyuan.cn.zhoulin.views.order.OrderEvaluate { <init>(...); }
+
+# view AndroidManifest.xml #generated:332
+-keep class xinyuan.cn.zhoulin.views.order.OrderProductEvaluate { <init>(...); }
+
+# view AndroidManifest.xml #generated:275
+-keep class xinyuan.cn.zhoulin.views.order.OrderTrack { <init>(...); }
+
+# view AndroidManifest.xml #generated:320
+-keep class xinyuan.cn.zhoulin.views.order.QQServer { <init>(...); }
+
+# view AndroidManifest.xml #generated:239
+-keep class xinyuan.cn.zhoulin.zxing.CaptureActivity { <init>(...); }
+
+# view res/layout/mainn.xml #generated:28
+-keep class xinyuan.cn.zhoulin.zxing.ViewfinderView { <init>(...); }
+
