@@ -221,7 +221,7 @@ public class MainFragment extends Fragment implements OnClickListener,
 		HashMap<String, String> te = new HashMap<String, String>();
 		te.put("store_id", Myapplication.store_id);
 		te.put("act", UrlPath.ACT_PRODUCT); 
-		te.put("acttag", UrlPath.ACT_PRODUCT_SPECIAL); //特价商品
+		te.put("acttag", UrlPath.ACT_PRODUCT_SALE); //特价商品
 		te.put("pagesize", Myapplication.productItemNum); //显示多少个商品
 		Log.i("zhoulin", Myapplication.getUrl(te));
 		Myapplication.client.postWithURL(UrlPath.SERVER_URL, te,
@@ -402,7 +402,7 @@ public class MainFragment extends Fragment implements OnClickListener,
 		HashMap<String, String> te = new HashMap<String, String>();
 		te.put("store_id", Myapplication.store_id);
 		te.put("act",UrlPath.ACT_PRODUCT); //首页商品
-		te.put("acttag", UrlPath.ACT_PRODUCT_HOT); //热卖商品
+		te.put("acttag", UrlPath.ACT_PRODUCT_SPECIAL); //特价商品
 		te.put("pagesize", Myapplication.productItemNum); //显示多少个商品
 		Myapplication.client.postWithURL(UrlPath.SERVER_URL, te,
 				new Listener<JSONObject>() {
