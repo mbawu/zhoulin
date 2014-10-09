@@ -54,6 +54,7 @@ public class OrderDetails extends Activity implements OnClickListener {
 	private TextView express_enname;
 	private TextView express_code;
 	private TextView note;
+	private TextView freight;
 	private TextView toprice;
 	private ListView lv;
 	private List<OrderDetailsBean> li;
@@ -186,7 +187,7 @@ public class OrderDetails extends Activity implements OnClickListener {
 								express_code.setText(ob.getExpress_code());
 								express_enname.setText(ob.getExpress_enname());
 								totalprice.setText(ob.getAllprice());
-								toprice.setText(ob.getAllprice());
+								toprice.setText(ob.getPrice());
 //								Log.i("test", "flag.getText()-->"+flag.getText().toString());
 								if (ob.getOrder_flag().equals("5")) {
 									bt.setVisibility(View.VISIBLE);
@@ -265,9 +266,12 @@ public class OrderDetails extends Activity implements OnClickListener {
 	 * 
 	 */
 	private void inintView() {
+		freight= (TextView) findViewById(R.id.freight);
+		
 		payway = (TextView) findViewById(R.id.payway);
 		toprice = (TextView) findViewById(R.id.toprice);
 		ob = (OrderBean) getIntent().getExtras().get("ob");
+		freight.setText("￥"+ob.getFreight());
 		statu=(HashMap<String, String>) getIntent().getExtras().get("statu");
 		totalprice = (TextView) findViewById(R.id.totalprice);
 		back = findViewById(R.id.back);

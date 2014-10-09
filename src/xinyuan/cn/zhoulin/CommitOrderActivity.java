@@ -66,6 +66,7 @@ public class CommitOrderActivity extends Activity implements OnClickListener {
 	private TextView shopnum;
 	private TextView shopprice;
 	private TextView price;
+	private TextView freightprice;
 	private TextView totalpriceTxt;
 	private String totalprice;
 	private Button pay;
@@ -93,6 +94,39 @@ public class CommitOrderActivity extends Activity implements OnClickListener {
 		initView();
 		initData();
 		initlistener();
+		getFreight();
+	}
+	
+	private void getFreight()
+	{
+		Log.i("test", "start");
+		Log.i("test", cb.getStore_price() * cb.getNum()+"");
+		HashMap<String, String> ha = new HashMap<String, String>();
+		ha.put("act", "freight");
+		ha.put("order_price",  ""+cb.getStore_price() * cb.getNum());
+		ha.put("sid", Myapplication.store_id);
+		Log.i("test", Myapplication.getUrl(ha));
+		Myapplication.client.postWithURL("http://api2.xinlingmingdeng.com/order/", ha,
+				new Listener<JSONObject>() {
+					public void onResponse(JSONObject response) {
+						try {
+							if (response.getInt("code") == 1) {
+							String freight=response.getString("freight");
+							Log.i("test", "freight->"+freight);
+							freightprice.setText("￥"+freight);
+							String newTotalPrice=String.valueOf(Double.valueOf(totalprice)+Double.valueOf(freight));
+							totalpriceTxt.setText("￥"+newTotalPrice);
+							}
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+
+					}
+				}, new ErrorListener() {
+					public void onErrorResponse(VolleyError error) {
+
+					}
+				});
 	}
 	/**
 	 * 
@@ -197,6 +231,7 @@ public class CommitOrderActivity extends Activity implements OnClickListener {
 		shopnum = (TextView) findViewById(R.id.shopnum);
 		shopprice = (TextView) findViewById(R.id.shopprice);
 		price = (TextView) findViewById(R.id.price);
+		freightprice= (TextView) findViewById(R.id.freightprice);
 		totalpriceTxt = (TextView) findViewById(R.id.totalprice);
 		pay = (Button) findViewById(R.id.pay);
 	}
@@ -264,6 +299,7 @@ public class CommitOrderActivity extends Activity implements OnClickListener {
 										getPayInfo.put("oid", arg0.getString("oid"));
 										getPayInfo.put("subject", arg0.getString("subject"));
 										getPayInfo.put("price", arg0.getString("price"));
+										Log.i("test", "backprice->"+arg0.getString("price"));
 										getPayInfo.put("hc", arg0.getString("hc"));
 										
 											ov();
@@ -312,6 +348,8 @@ public class CommitOrderActivity extends Activity implements OnClickListener {
 		}
 
 	}
+	
+	
 	/**
 	 * 
 	 */

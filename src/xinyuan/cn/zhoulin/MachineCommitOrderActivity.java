@@ -56,6 +56,7 @@ public class MachineCommitOrderActivity extends Activity implements
 	private ListView shoplv;
 	private EditText note;
 	private TextView price;
+	private TextView freightprice;
 	private TextView totalprice;
 	private Button pay;
 	private Button back;
@@ -79,8 +80,11 @@ public class MachineCommitOrderActivity extends Activity implements
 		initView();
 		initData();
 		initlistener();
+		getFreight();
 	}
 
+	
+	
 	/**
 	 * 
 	 */
@@ -163,6 +167,36 @@ public class MachineCommitOrderActivity extends Activity implements
 		pay2.setOnClickListener(this);
 	}
 
+	private void getFreight()
+	{
+		Log.i("test", "start");
+		HashMap<String, String> ha = new HashMap<String, String>();
+		ha.put("act", "freight");
+		ha.put("order_price",  ""+m);
+		ha.put("sid", Myapplication.store_id);
+		Log.i("test", Myapplication.getUrl(ha));
+		Myapplication.client.postWithURL("http://api2.xinlingmingdeng.com/order/", ha,
+				new Listener<JSONObject>() {
+					public void onResponse(JSONObject response) {
+						try {
+							if (response.getInt("code") == 1) {
+							String freight=response.getString("freight");
+							Log.i("test", "freight->"+freight);
+							freightprice.setText("￥"+freight);
+							String newTotalPrice=String.valueOf(Double.valueOf(m)+Double.valueOf(freight));
+							totalprice.setText("￥"+newTotalPrice);
+							}
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+
+					}
+				}, new ErrorListener() {
+					public void onErrorResponse(VolleyError error) {
+
+					}
+				});
+	}
 	/**
 	 * 
 	 */
@@ -185,6 +219,7 @@ public class MachineCommitOrderActivity extends Activity implements
 		price = (TextView) findViewById(R.id.price);
 		totalprice = (TextView) findViewById(R.id.totalprice);
 		pay = (Button) findViewById(R.id.pay);
+		freightprice= (TextView) findViewById(R.id.freightprice);
 		price.setText("￥ " + m);
 		totalprice.setText("￥ " + m);
 	}

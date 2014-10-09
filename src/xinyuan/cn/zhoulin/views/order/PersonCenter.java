@@ -180,6 +180,7 @@ public class PersonCenter extends Fragment implements OnClickListener {
 					new Listener<JSONObject>() {
 						public void onResponse(JSONObject response) {
 							try {
+								Log.i("test", "order->response:"+response.toString());
 								if (response.getInt("code") == 1) {
 									JSONArray ja = response
 											.getJSONArray("list");
@@ -194,8 +195,11 @@ public class PersonCenter extends Fragment implements OnClickListener {
 										ob.setOrder_subject(jb.getString("order_subject"));
 										ob.setAddress(jb
 												.getString("order_subject"));
-										ob.setAllprice(""
-												+ jb.getDouble("total_price"));
+										ob.setFreight(jb.getString("freight"));
+										double freight=jb.getDouble("freight");
+										String allPrice=String.valueOf( jb.getDouble("total_price")+freight);
+										ob.setPrice(jb.getString("total_price"));
+										ob.setAllprice(allPrice);
 										ob.setCreatetime(jb
 												.getString("createtime"));
 										ob.setExpress_code(jb

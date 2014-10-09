@@ -6,6 +6,7 @@ import java.util.List;
 
 public class OrderBean implements Serializable {
 	private String allprice;
+	private String price;
 	private String createtime;
 	private String flag;
 	private String order_flag;
@@ -23,6 +24,23 @@ public class OrderBean implements Serializable {
 	private String ispay;
 	private String orderHc;
 	private String order_subject;
+	private String freight;
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public String getFreight() {
+		return freight;
+	}
+
+	public void setFreight(String freight) {
+		this.freight = freight;
+	}
 
 	public String getOrder_subject() {
 		return order_subject;

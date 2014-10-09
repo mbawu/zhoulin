@@ -266,6 +266,7 @@
                         android:orientation="horizontal" >
 
                         <TextView
+                            
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="运费 :"
@@ -273,6 +274,7 @@
                             android:textSize="15sp" />
 
                         <TextView
+                             android:id="@+id/freightprice"
                             android:layout_width="90dp"
                             android:layout_height="wrap_content"
                             android:text="￥ 0.00"
