@@ -90,7 +90,8 @@ public class ShoptwoActivity extends Activity implements OnClickListener,
 			lvlist = new ArrayList<CommodityBean>();
 		}
 		initView();
-		initData();
+//		initData();
+		initlvData(idd, sort_type);
 		initpop();
 		initlistener();
 	}
@@ -147,8 +148,8 @@ public class ShoptwoActivity extends Activity implements OnClickListener,
 		if (page <= totalpage) {
 			HashMap<String, String> ha = new HashMap<String, String>();
 			ha.put("act", UrlPath.ACT_PRODUCTLIST);
-			ha.put("category_id", idd);
-			ha.put("cache_id", cache_id);
+			ha.put("category_id", id);
+//			ha.put("cache_id", cache_id);
 			ha.put("sort_type", type);
 			ha.put("store_id", Myapplication.store_id);
 			ha.put("page", "" + page);
@@ -291,6 +292,7 @@ public class ShoptwoActivity extends Activity implements OnClickListener,
 		back = findViewById(R.id.back);
 		num = (TextView) findViewById(R.id.num);
 		title = (TextView) findViewById(R.id.title);
+		title.setText("商品列表");
 		ly = (LinearLayout) findViewById(R.id.ly);
 		lv = (ListView) findViewById(R.id.lv);
 		ad = new Myad();
