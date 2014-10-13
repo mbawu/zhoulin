@@ -1,5 +1,7 @@
 ﻿package xinyuan.cn.zhoulin;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.json.JSONArray;
@@ -12,6 +14,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -19,6 +22,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,16 +35,22 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.SlidingDrawer;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.NetworkImageView;
+
+import xinyuan.cn.zhoulin.R;
+
 //
 public class Commodity extends Activity implements OnClickListener,
 		OnGestureListener { // 公用Activity商品详细信息
@@ -94,6 +104,9 @@ public class Commodity extends Activity implements OnClickListener,
 	private Button dang;
 	private String detailUrl;
 	private LinearLayout detailBtn;
+	private LinearLayout attributeLayout;
+	private Resources resources;
+	ArrayList<RadioButton> radioList;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -112,12 +125,12 @@ public class Commodity extends Activity implements OnClickListener,
 	private void initImagelist() {
 		HashMap<String, String> te = new HashMap<String, String>();
 		te.put("store_id", Myapplication.store_id);
-		te.put("act", UrlPath.ACT_PRODUCT); 
-		te.put("acttag", UrlPath.ACT_PRODUCT_HOT); //人气商品
-		te.put("pagesize", Myapplication.productItemNum); //显示多少个商品
-//		te.put("store_id", Myapplication.store_id);
-//		te.put("page", "1");
-//		te.put("per", "20");
+		te.put("act", UrlPath.ACT_PRODUCT);
+		te.put("acttag", UrlPath.ACT_PRODUCT_HOT); // 人气商品
+		te.put("pagesize", Myapplication.productItemNum); // 显示多少个商品
+		// te.put("store_id", Myapplication.store_id);
+		// te.put("page", "1");
+		// te.put("per", "20");
 		Myapplication.client.postWithURL(UrlPath.SERVER_URL, te,
 				new Listener<JSONObject>() {
 					public void onResponse(JSONObject response) {
@@ -169,27 +182,141 @@ public class Commodity extends Activity implements OnClickListener,
 		pw.setBackgroundDrawable(new BitmapDrawable());
 	}
 
-	
-	//商品详细信息
+	// 商品详细信息
 	private void initData() {
 		HashMap<String, String> ha = new HashMap<String, String>();
 		ha.put("store_id", Myapplication.store_id);
 		ha.put("act", UrlPath.ACT_PRODUCTDETAIL);
 		ha.put("product_id", id);
-		Log.i("detail",id);
+		Log.i("test", "url->" + Myapplication.getUrl(ha));
 		Myapplication.client.postWithURL(UrlPath.SERVER_URL, ha,
 				new Listener<JSONObject>() {
 					@Override
 					public void onResponse(JSONObject response) {
 						String content = response.toString();
 						try {
+							Log.i("test",
+									"product detail-》" + response.toString());
 							JSONObject jb = new JSONObject(content);
 							if (jb.getInt("code") == 1) {
-								Log.i("test", response.toString());
-								JSONObject jc = new JSONObject(jb.getString("pinfo"));
-								Log.i("detail",jc.toString());
-								Log.i("detail",jc.getString("product_id"));
-								product_id.setText(jc.getString("product_id"));
+								cb = new Product();
+								JSONObject jc = new JSONObject(jb
+										.getString("pinfo"));
+								// //-------------------商品属性----------------------------
+
+								JSONArray attributes = response
+										.getJSONArray("pattrprice");
+								if (attributes.length() >= 1) {
+									attributeLayout.setVisibility(View.VISIBLE);
+									LinearLayout layout = null;
+									boolean newLine = true;
+									radioList = new ArrayList<RadioButton>();
+									for (int i = 0; i < attributes.length(); i++) {
+										if (newLine) {
+											layout = new LinearLayout(
+													attributeLayout
+															.getContext());
+											newLine = false;
+										}
+										LinearLayout.LayoutParams layoutParams1 = new LinearLayout.LayoutParams(
+												LayoutParams.WRAP_CONTENT,
+												LayoutParams.WRAP_CONTENT);
+										layoutParams1.setMargins(0, 7, 10, 0);
+
+										RadioButton attribute = (RadioButton) LayoutInflater
+												.from(layout.getContext())
+												.inflate(R.layout.radio_item,
+														null);
+										attribute
+												.setLayoutParams(layoutParams1);
+										// 显示属性名称
+										JSONObject item = attributes
+												.getJSONObject(i);
+										// 获取该属性的商品数量
+										int num = item.getInt("PriceNum");
+										// 如果该商品数量不足，则不让选择
+										if (num <= 0)
+											attribute.setEnabled(false);
+										attribute.setText(item
+												.getString("PriceName"));
+										attribute.setTextColor(resources
+												.getColor(R.color.gray));
+										attribute.setId(i);
+										attribute.setTextSize(14);
+										attribute.setTag(R.id.tag_first,
+												item.getString("Price"));
+										attribute.setTag(R.id.tag_second,
+												item.getString("PriceName"));
+										if (i == 0) {
+											attribute.setChecked(true);
+											cb.setProduct_attribute(attribute
+													.getText().toString());
+											String Price = item.getString("Price");
+											Log.i("test","price i==0--->"+Price);
+											cb.setStore_price(Double
+													.valueOf(Price));
+											store_price.setText(Price);
+										}
+										layout.addView(attribute);
+										int
+										width = View.MeasureSpec
+												.makeMeasureSpec(
+														0,
+														View.MeasureSpec.UNSPECIFIED);
+										int
+										height = View.MeasureSpec
+												.makeMeasureSpec(
+														0,
+														View.MeasureSpec.UNSPECIFIED);
+										layout.measure(width, height);
+										Log.i("test",
+												"" + layout.getMeasuredWidth());
+										if (layout.getMeasuredWidth() > Myapplication.width) {
+											layout.removeView(attribute);
+											attributeLayout.addView(layout);
+											newLine = true;
+											i--;
+											continue;
+											
+										}
+										attribute
+												.setOnClickListener(new OnClickListener() {
+
+													@Override
+													public void onClick(View v) {
+														for (int j = 0; j < radioList
+																.size(); j++) {
+															RadioButton radioButton = radioList
+																	.get(j);
+															radioButton
+																	.setChecked(false);
+														}
+														((RadioButton) v)
+																.setChecked(true);
+														cb.setProduct_attribute(v
+																.getTag(R.id.tag_second)
+																.toString());
+														String Price = v
+																.getTag(R.id.tag_first)
+																.toString();
+														cb.setStore_price(Double
+																.valueOf(Price));
+														store_price
+																.setText(""+Price);
+													}
+												});
+										radioList.add(attribute);
+
+									}
+									attributeLayout.addView(layout);
+								} else {
+									cb.setStore_price(jc
+											.getDouble("store_price"));
+									store_price.setText(""+ jc.getDouble("store_price"));
+								}
+
+								// //--------------------商品属性---------------------------
+								product_id.setText(jc.getString("product_code"));
 								product_inventory.setText(""
 										+ jc.getInt("product_inventory"));
 								brand_name.setText(jc.getString("brand_name"));
@@ -197,8 +324,8 @@ public class Commodity extends Activity implements OnClickListener,
 										.getString("product_name"));
 								sliding_name.setText(jc
 										.getString("product_name"));
-								store_price.setText("￥"
-										+ jc.getString("store_price"));
+//								store_price.setText("￥"
+//										+ jc.getString("store_price"));
 								sliding_price.setText("￥"
 										+ jc.getString("store_price"));
 								sliding_num.setText("1");
@@ -207,17 +334,18 @@ public class Commodity extends Activity implements OnClickListener,
 										sliding_photo, R.drawable.ic_launcher);
 								reference_price.setText(""
 										+ jc.getDouble("reference_price"));
-								store_price.setText(""
-										+ jc.getDouble("store_price"));
+//								store_price.setText(""
+//										+ jc.getDouble("store_price"));
 								product_inventory.setText(""
 										+ jc.getInt("product_inventory"));
 								sale_num.setText("" + jc.getInt("sale_num"));
 								hot.setText("人气值：" + jc.getInt("hot"));
 								evannums.setText("评价数" + "("
-										+ jb.getInt("evanums") + ")"); //获取评论数		
+										+ jb.getInt("evanums") + ")"); // 获取评论数
 								JSONArray ja = (JSONArray) jb.get("imglist");
 								for (int i = 0; i < ja.length(); i++) {
-									String m = ((JSONObject) ja.get(i)).getString("attachments_path");
+									String m = ((JSONObject) ja.get(i))
+											.getString("attachments_path");
 									LinearLayout ll = (LinearLayout) Myapplication.lf
 											.inflate(R.layout.shopphoto, null);
 									NetworkImageView l = (NetworkImageView) ll
@@ -230,21 +358,22 @@ public class Commodity extends Activity implements OnClickListener,
 								photototalpage = ja.length();
 								shopnum.setText("" + photopage + "/"
 										+ photototalpage);
-								cb = new Product();
+
 								cb.setProduct_id(jc.getString("product_id"));
 								cb.setProduct_name(jc.getString("product_name"));
-								cb.setProduct_photo(jb
-										.getString("defaultImg"));
-								cb.setStore_price(jc.getDouble("store_price"));
-								//获取商品详情链接
-								JSONObject detailObject=response.getJSONObject("pinfo");
-								
-								detailUrl=detailObject.getString("content_url");
+								cb.setProduct_photo(jb.getString("defaultImg"));
+
+								// 获取商品详情链接
+								JSONObject detailObject = response
+										.getJSONObject("pinfo");
+
+								detailUrl = detailObject
+										.getString("content_url");
 								Log.i("test", detailUrl);
 							}
 						} catch (JSONException e) {
 							Toast.makeText(Commodity.this, "数据解析异常", 1).show();
-							Log.i("detail",e.toString());
+							Log.i("detail", e.toString());
 							e.printStackTrace();
 						}
 
@@ -267,7 +396,9 @@ public class Commodity extends Activity implements OnClickListener,
 					LayoutParams.WRAP_CONTENT);
 			ly2.setMargins(7, 3, 0, 3);
 		}
-		detailBtn=(LinearLayout) findViewById(R.id.product_content);
+		resources = Commodity.this.getResources();
+		attributeLayout = (LinearLayout) findViewById(R.id.product_attribute_layout);
+		detailBtn = (LinearLayout) findViewById(R.id.product_content);
 		detailBtn.setOnClickListener(this);
 		dang = (Button) findViewById(R.id.dang);
 		shopnum = (TextView) findViewById(R.id.shopnum);
@@ -340,26 +471,33 @@ public class Commodity extends Activity implements OnClickListener,
 			this.overridePendingTransition(R.anim.view_in_from_left,
 					R.anim.view_out_to_right);
 			break;
-		case R.id.qq: //点击商品详情拨打客服电话
+		case R.id.qq: // 点击商品详情拨打客服电话
 			new AlertDialog.Builder(this)
-			.setMessage("\t\t确定拨打客服电话\n\t\t\t400-6102-106")
-		     .setPositiveButton("确定", new DialogInterface.OnClickListener() { 
-		  
-		         @Override 
-		         public void onClick(DialogInterface dialog, int which) { 
-		         // 点击“确认”后的操作 
-//		         MainFragmentActivity.this.finish(); 
-		        	 Intent intent = new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+"4006102106"));
-		             Commodity.this.startActivity(intent);//内部类
-		         } 
-		     }) 
-		     .setNegativeButton("返回", new DialogInterface.OnClickListener() { 
-		  
-		         @Override 
-		         public void onClick(DialogInterface dialog, int which) { 
-		         // 点击“返回”后的操作,这里不设置没有任何操作 
-		         } 
-		     }).show(); 
+					.setMessage("\t\t确定拨打客服电话\n\t\t\t400-6102-106")
+					.setPositiveButton("确定",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									// 点击“确认”后的操作
+									// MainFragmentActivity.this.finish();
+									Intent intent = new Intent(
+											Intent.ACTION_CALL, Uri
+													.parse("tel:"
+															+ "4006102106"));
+									Commodity.this.startActivity(intent);// 内部类
+								}
+							})
+					.setNegativeButton("返回",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									// 点击“返回”后的操作,这里不设置没有任何操作
+								}
+							}).show();
 
 			break;
 		case R.id.machine:
@@ -471,11 +609,10 @@ public class Commodity extends Activity implements OnClickListener,
 				cb.setNum(n - 1);
 			}
 			break;
-		case R.id.product_content://商品详情链接跳转页面
-			Intent intent=new Intent();
+		case R.id.product_content:// 商品详情链接跳转页面
+			Intent intent = new Intent();
 			intent.setClass(this, ProductDetailWebView.class);
-			if(detailUrl==null)
-			{
+			if (detailUrl == null) {
 				Toast.makeText(this, "该商品暂无详情", 2000).show();
 				return;
 			}
@@ -506,7 +643,7 @@ public class Commodity extends Activity implements OnClickListener,
 	@Override
 	protected void onResume() {
 		super.onResume();
-//		num.setText("" + Myapplication.machineCachelist.size());
+		// num.setText("" + Myapplication.machineCachelist.size());
 	}
 
 	public void tuichu() {

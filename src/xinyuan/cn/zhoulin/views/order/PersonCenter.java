@@ -489,12 +489,13 @@ public class PersonCenter extends Fragment implements OnClickListener {
 			
 
 			} else if (b.getText().equals("订单追踪")) {
-				Intent inn = new Intent(getActivity(), OrderTrack.class);
-				inn.putExtra("type", oo.getExpress_enname());
-				inn.putExtra("postid", oo.getExpress_code());
-				startActivity(inn);
-				getActivity().overridePendingTransition(
-						R.anim.view_in_from_right, R.anim.view_out_to_left);
+				b.setVisibility(View.GONE);
+//				Intent inn = new Intent(getActivity(), OrderTrack.class);
+//				inn.putExtra("type", oo.getExpress_enname());
+//				inn.putExtra("postid", oo.getExpress_code());
+//				startActivity(inn);
+//				getActivity().overridePendingTransition(
+//						R.anim.view_in_from_right, R.anim.view_out_to_left);
 			}
 
 			break;
@@ -672,7 +673,7 @@ public class PersonCenter extends Fragment implements OnClickListener {
 				if (ob.getFlag().equals("3") && ob.getIspay().equals("1")) {
 					flag.setText("派送中，已付款");
 					right.setText("");//已发货的订单无法取消，删除和取消订单的地方为空
-					bt.setVisibility(View.VISIBLE);//如果已经付款而且已经派送，支付宝支付更改为订单追踪
+					bt.setVisibility(View.GONE);//如果已经付款而且已经派送，支付宝支付更改为订单追踪
 					bt.setText("订单追踪");
 				}
 				else if (ob.getFlag().equals("3") && ob.getIspay().equals("0")&& ob.getPayway().equals( "1")) {

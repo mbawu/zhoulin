@@ -116,6 +116,26 @@
                         android:textSize="15sp" />
                 </LinearLayout>
 
+                 <!-- 商品属性 -->
+
+            <LinearLayout
+                android:id="@+id/product_attribute_layout"
+                style="@style/product_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                 android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                android:layout_marginBottom="6dp"
+                android:visibility="gone"
+                android:orientation="vertical" >
+                    <TextView 
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                         android:textSize="15sp"
+                         android:textColor="#808080"
+                        android:text="商品属性"/>
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -281,7 +301,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="产品编号："
+                            android:text="产品编码："
                             android:textColor="#808080"
                             android:textSize="15sp" />
 

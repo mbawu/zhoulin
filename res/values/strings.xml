@@ -8,5 +8,9 @@
     <string name="confirm_install_hint">"安装提示"</string>
     <string name="confirm_install">"为保证您的交易安全，需要您安装移动快捷支付，才能进行付款。\n\n点击确定，立即安装。"</string>
     <string name="check_sign_failed">您的订单信息已被非法篡改。</string>
-
+<!-- Tag可使用ID -->
+  <item type="id" name="tag_first"></item>
+    <item type="id" name="tag_second"></item>
+      <item type="id" name="tag_three"></item>
+    <item type="id" name="tag_four"></item>
 </resources>

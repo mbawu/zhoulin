@@ -102,12 +102,14 @@ public class OrderDetails extends Activity implements OnClickListener {
 					public void onResponse(JSONObject response) {
 						try {
 							int code = response.getInt("code");
-							
+							Log.i("test", "order detail->"+response.toString());
 							switch (code) {
 							case 1:
 								if (li == null) {
 									li = new ArrayList<OrderDetailsBean>();
 								}
+								releasetime.setText(response
+										.getString("releasetime"));
 								order_code.setText(response
 										.getString("order_code"));
 								//封装需要到评价订单的页面取出来的产品的信息
@@ -183,7 +185,7 @@ public class OrderDetails extends Activity implements OnClickListener {
 								address.setText(response
 										.getString("address"));
 								note.setText(response.getString("note"));
-								releasetime.setText(ob.getReleasetime());
+
 								express_code.setText(ob.getExpress_code());
 								express_enname.setText(ob.getExpress_enname());
 								totalprice.setText(ob.getAllprice());
@@ -333,7 +335,7 @@ public class OrderDetails extends Activity implements OnClickListener {
 			TextView price = (TextView) convertView.findViewById(R.id.price);
 			name.setText(ob.getProduct_name());
 			num.setText(ob.getProduct_num() + "份    ");
-			price.setText("￥：" + ob.getProduct_price());
+			price.setText("￥" + ob.getProduct_price());
 			Myapplication.client.getImageForNetImageView(ob.getProduct_photo(),
 					nw, R.drawable.ic_launcher);
 			return convertView;

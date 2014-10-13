@@ -22,4 +22,20 @@
          <item name="android:minHeight">11dip</item>
          <item name="android:maxHeight">11dip</item>
     </style>
+    
+        <!-- 商品详情容器盒子样式 -->
+    <style name="product_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">#FFFFFFFF</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+    
+         <style name="ItemRadioBtn">  
+      <!--   <item name="android:background">@drawable/radio_btn_bg</item>   -->
+        <item name="android:background">@drawable/radio_item</item>  
+             <item name="android:layout_marginTop">5dp</item>
+	</style> 
 </resources>

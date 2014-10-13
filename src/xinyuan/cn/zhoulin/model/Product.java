@@ -11,8 +11,19 @@ public class Product implements Serializable {
 	private String product_id;
 	private String product_name;
 	private String product_photo;
+	private String product_attribute;
 	private double store_price; //商品价
 	private double reference_price; //参考价
+	
+	
+	public String getProduct_attribute() {
+		return product_attribute;
+	}
+
+	public void setProduct_attribute(String product_attribute) {
+		this.product_attribute = product_attribute;
+	}
+
 	public double getReference_price() {
 		return reference_price;
 	}

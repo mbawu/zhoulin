@@ -38,8 +38,10 @@ public class OrderMake {
 		.append("\"");
 		json.append(",\"product_name\":\"").append(cm.getProduct_name())
 		.append("\"");
-		json.append(",\"product_attribute\":\"").append("")
-		.append("\"");
+		if(cm.getProduct_attribute()==null)
+			json.append(",\"product_attribute\":\"").append("").append("\"");
+		else
+			json.append(",\"product_attribute\":\"").append(cm.getProduct_attribute()).append("\"");
 		json.append(",\"reference_price\":\"").append("1.00")
 		.append("\"");
 		json.append(",\"product_id\":\"").append(cm.getProduct_id())

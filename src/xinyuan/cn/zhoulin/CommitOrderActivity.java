@@ -287,6 +287,7 @@ public class CommitOrderActivity extends Activity implements OnClickListener {
 						new Listener<JSONObject>() {
 							public void onResponse(JSONObject arg0) {
 								try {
+									Log.i("test", "arg0->"+arg0.toString());
 									switch (arg0.getInt("code")) {
 									case 1:
 //										JSONArray ja = arg0
@@ -332,8 +333,8 @@ public class CommitOrderActivity extends Activity implements OnClickListener {
 							@Override
 							public void onErrorResponse(VolleyError arg0) {
 								Log.i("test", "运行到这里了3！"+arg0.getMessage());
-								Toast.makeText(CommitOrderActivity.this,
-										"服务器未响应", 2000).show();
+//								Toast.makeText(CommitOrderActivity.this,
+//										"服务器未响应", 2000).show();
 
 							}
 						});
