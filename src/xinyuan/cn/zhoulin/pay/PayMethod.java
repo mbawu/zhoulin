@@ -47,7 +47,7 @@ public class PayMethod extends Activity implements OnClickListener {
 	private String oid;
 	private String hc;
 
-	private static String mMode = "01";// 设置测试模式:01为测试 00为正式环境
+	private static String mMode = "00";// 设置测试模式:01为测试 00为正式环境
 	private static final String TN_URL_01 = "http://www.zhoulinjk.com/unionpay_app/instance/tn.php";// 银联获取TN接口
 	private static final int BANK_PAY = 3;// 银联卡支付
 	private static final int RQF_PAY = 1;// 支付宝支付
