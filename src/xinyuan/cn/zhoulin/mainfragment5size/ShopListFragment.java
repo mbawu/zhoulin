@@ -105,6 +105,7 @@ public class ShopListFragment extends Fragment implements OnClickListener {
 									sp.setCategory2_name(jj
 											.getString("category_name"));
 									sp.setUrl(jj.getString("category_images"));
+									sp.setCache_id(jj.getString("cache_id"));
 									lv2list.add(sp);
 								}
 								ad2.notifyDataSetChanged();
@@ -152,6 +153,7 @@ public class ShopListFragment extends Fragment implements OnClickListener {
 											.getString("category_intro"));
 									shp.setCategory1_images(jj
 											.getString("category_images"));
+								
 									lv1list.add(shp);
 									if (i == 0) {
 										initlv2Data(jj
@@ -191,6 +193,7 @@ public class ShopListFragment extends Fragment implements OnClickListener {
 					public void onResponse(JSONObject arg0) {
 						String ss = arg0.toString();
 						try {
+							Log.i("test", "二级分类cachid->"+arg0.toString());
 							JSONObject jb = new JSONObject(ss);
 							if (jb.getInt("code") == 1) {
 								lv2list = new ArrayList<ShopTwoBean>();
@@ -203,6 +206,7 @@ public class ShopListFragment extends Fragment implements OnClickListener {
 									sp.setCategory2_name(jj
 											.getString("category_name"));
 									sp.setUrl(jj.getString("category_images")); 
+									sp.setCache_id(jj.getString("cache_id"));
 									lv2list.add(sp);
 								}
 								ad2.notifyDataSetChanged();
@@ -263,6 +267,7 @@ public class ShopListFragment extends Fragment implements OnClickListener {
 				in.putExtra("id", idd);
 				Log.i("test", "二级商品ID："+idd);
 				in.putExtra("name", namee);
+				in.putExtra("cache_id", id.getTag().toString());
 				startActivity(in);
 				getActivity().overridePendingTransition(
 						R.anim.view_in_from_right, R.anim.view_out_to_left);
@@ -337,6 +342,7 @@ public class ShopListFragment extends Fragment implements OnClickListener {
 			 */
 			TextView id = (TextView) convertView.findViewById(R.id.id);
 			id.setText(shop.getCategory2_id());
+			id.setTag(shop.getCache_id());
 			TextView name = (TextView) convertView.findViewById(R.id.name);
 			name.setText(shop.getCategory2_name());
 			Myapplication.client.getImageForNetImageView(shop.getUrl(),

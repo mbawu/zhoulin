@@ -4,6 +4,16 @@ public class ShopTwoBean {
 	private String url;
 	private String category2_id;
 	private String category2_name;
+	private String cache_id;
+	
+	
+	public String getCache_id() {
+		return cache_id;
+	}
+
+	public void setCache_id(String cache_id) {
+		this.cache_id = cache_id;
+	}
 
 	public String getUrl() {
 		return url;

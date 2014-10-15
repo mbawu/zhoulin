@@ -149,16 +149,19 @@ public class ShoptwoActivity extends Activity implements OnClickListener,
 			HashMap<String, String> ha = new HashMap<String, String>();
 			ha.put("act", UrlPath.ACT_PRODUCTLIST);
 			ha.put("category_id", id);
-//			ha.put("cache_id", cache_id);
+			ha.put("cache_id", getIntent().getStringExtra("cache_id"));
 			ha.put("sort_type", type);
 			ha.put("store_id", Myapplication.store_id);
 			ha.put("page", "" + page);
 			ha.put("per", "5");
+			Log.i("test", "cache_id-->"+getIntent().getStringExtra("cache_id"));
+			Log.i("test", "三级申请列表->"+Myapplication.getUrl(ha));
 			Myapplication.client.postWithURL(UrlPath.SERVER_URL, ha,
 					new Listener<JSONObject>() {
 						@Override
 						public void onResponse(JSONObject response) {
 							try {
+								
 								if (response.getInt("code") == 1) {
 									JSONArray ja = response
 											.getJSONArray("list");
