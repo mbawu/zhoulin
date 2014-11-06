@@ -562,7 +562,7 @@
                 android:layout_height="30dp"
                 android:gravity="right|center_vertical"
                 android:orientation="horizontal"
-                android:visibility="gone" >
+                android:visibility="visible" >
 
                 <LinearLayout
                     android:layout_width="fill_parent"

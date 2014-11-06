@@ -118,7 +118,7 @@ public class MuchmoreFragment extends Fragment implements OnClickListener {
 		         // 点击“确认”后的操作 
 		        	 TextView num = (TextView) v.findViewById(R.id.number);
 		        	 Intent phoneIntent = new Intent("android.intent.action.CALL",
-		 					Uri.parse("tel:" + num.getText().toString()));
+		 					Uri.parse("tel:" + "010-63703006"));
 		 			getActivity().startActivity(phoneIntent);
 		         } 
 		     }) 
